@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serverdev": "nodemon backend/server",
-    "uitdev": "npm start --prefix ui",
+    "devserver": "nodemon backend/server",
+    "devui": "npm start --prefix ui",
     "dev":"concurrently \"npm run serverdev\" \"npm run uidev\"",
     "serverprod":"node backend/server",
     "import":"node backend/seeder",

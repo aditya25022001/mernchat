@@ -45,6 +45,6 @@ userSchema.pre('save', async function(next){
     this.password = await bcrypt.hash(this.password, salt);
 })
 
-const User = mongoose.model('usersmernchat', userSchema)
+const User = mongoose.model('users', userSchema)
 
 export default User
