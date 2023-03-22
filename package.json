@@ -1,0 +1,51 @@
+{
+  "name": "mernchat",
+  "version": "1.0.0",
+  "description": "chat application in MERN stack and socket.io",
+  "main": "server",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serverdev": "nodemon backend/server",
+    "uitdev": "npm start --prefix ui",
+    "dev":"concurrently \"npm run serverdev\" \"npm run uidev\"",
+    "serverprod":"node backend/server",
+    "import":"node backend/seeder",
+    "destroy":"node backend/seeder -d"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aditya25022001/mernchat.git"
+  },
+  "keywords": [
+    "chat",
+    "realtime",
+    "socket",
+    "mern",
+    "react",
+    "node",
+    "express",
+    "mongodb"
+  ],
+  "author": "Aditya Uday Ubale",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aditya25022001/mernchat/issues"
+  },
+  "homepage": "https://github.com/aditya25022001/mernchat#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "concurrently": "^7.6.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.2",
+    "nodemailer": "^6.9.1",
+    "nodemailer-express-handlebars": "^6.1.0",
+    "nodemon": "^2.0.21",
+    "socket.io": "^4.6.1",
+    "ulid": "^2.3.0"
+  }
+}
