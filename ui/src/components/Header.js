@@ -17,7 +17,7 @@ export const Header = () => {
     const { userInfo } = userLogin
 
     return (
-        <Navbar collapseOnSelect style={{ borderBottom:'1px solid lightgray' }} expand="lg" variant="light">
+        <Navbar collapseOnSelect style={{ borderBottom:'1px solid black' }} expand="lg" variant="dark">
             <Navbar.Brand>
                 <Link to={"/"} className='header_link_main d-flex' style={{ alignItems:'center', fontWeight:450 }}>
                     <SendIcon className="bubble" style={{ transform:"rotateZ(-45deg) translateY(-3px)" }} />MERNChat

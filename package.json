@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "devserver": "nodemon backend/server",
     "devui": "npm start --prefix ui",
-    "dev":"concurrently \"npm run serverdev\" \"npm run uidev\"",
+    "dev":"concurrently \"npm run devserver\" \"npm run devui\"",
     "serverprod":"node backend/server",
     "import":"node backend/seeder",
     "destroy":"node backend/seeder -d"
