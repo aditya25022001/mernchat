@@ -1,0 +1,92 @@
+@keyframes wave {
+    0% {transform:rotateZ(13deg);}
+    50% {transform:rotateZ(0deg);}
+    100% {transform:rotateZ(13deg);}
+}
+@keyframes bubble {
+    0% {
+        opacity:1; 
+    }
+    50% {
+        opacity:0.5;
+    }
+    100% {
+        opacity:1;
+    }
+}
+:root{
+    --warning:#FFD166;
+    --error:#EE6352;
+    --success:#649A47;
+}
+body{
+    color: black;
+    background-color: rgb(251, 251, 251);
+}
+*{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+*::selection{
+    background: black !important;
+}
+.bubble{
+    animation: bubble 3s infinite;
+}
+.wave{
+    animation: wave 1s infinite;
+}
+.header_link, .header_link_main{
+    color: black;
+}
+.header_link:hover{
+    text-decoration: underline;
+    color: black;
+}
+.header_link_main:hover{
+    text-decoration: none;
+    color: black;
+}
+.formcomponent{
+    width:38%;
+}
+.form-control{
+    font-size: 14px;
+    box-shadow: none !important;
+    border: 1px solid #d1d1d1;
+    padding:0.9rem 1rem 1rem 1rem;
+}
+.form-control:focus{
+    border: 1.2px solid #9c9b9b;
+}
+@media screen and (min-width: 500px) {
+    *::-webkit-scrollbar{
+        width:7px;
+        height:5px;
+        background-color: whitesmoke;
+    }
+    *::-webkit-scrollbar-thumb{
+        width:7px;
+        border-radius:150px;
+        background-color: rgb(211, 211, 211);
+    }
+}
+@media screen and (max-width:1200px){
+    .formcomponent{
+        width:53%;
+    }   
+}
+@media screen and (max-width:992px){
+    .formcomponent{
+        width:67%;
+    }   
+}
+@media screen and (max-width:768px){
+    .formcomponent{
+        width:80%;
+    }   
+}
+@media screen and (max-width:575px){
+    .formcomponent{
+        width:95%;
+    }   
+}

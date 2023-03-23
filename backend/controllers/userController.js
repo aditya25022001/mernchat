@@ -63,3 +63,16 @@ export const login = asyncHandler(async (req,res) => {
         })
     }
 })
+
+export const listUsers = asyncHandler(async(req,res) => {
+    const users = await User.find({}).find({ _id: { $ne: req.user._id } }).select("-password")
+    if(users) res.status(200).json({
+        message:"Retrieved list of users",
+        users
+    })
+    else{
+        res.status(500).json({
+            message:"Error in fetching users"
+        })
+    }
+})

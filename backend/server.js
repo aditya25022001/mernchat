@@ -1,9 +1,9 @@
 import express from "express";
-import cors from 'cors'
-import path from 'path'
-import authRoutes from './routes/authRoutes.js'
-import { config } from 'dotenv'
-import { connectDB } from './config/db.js'
+import cors from 'cors';
+import userRoutes from './routes/userRoutes.js';
+import chatRoutes from './routes/chatRoutes.js';
+import { config } from 'dotenv';
+import { connectDB } from './config/db.js';
 import { notFound, errorHandler } from "./middlewares/errorMidleware.js";
 
 const app = express()
@@ -23,11 +23,11 @@ app.use(cors({
     methods:["GET","PUT","POST","DELETE","PATCH"]
 }))
 
-const __dirname = path.resolve();
+app.use("/api/v1/user",userRoutes);
 
-console.timeLog(__dirname)
+app.use("/api/v1/chat",chatRoutes);
 
-app.use("/api/v1/auth",authRoutes);
+app.get("/",(req,res) => res.send(process.env.ALLOWED.split(" ")))
 
 app.use(notFound)
 

@@ -1,12 +1,11 @@
 import { Schema, model } from "mongoose";
 
-const messageSchema = Schema(
-  {
+const messageSchema = Schema({
     sender:{ 
         type: Schema.Types.ObjectId, 
         ref: "users" 
     },
-    content:{ 
+    message:{ 
         type: String, 
         trim: true 
     },
