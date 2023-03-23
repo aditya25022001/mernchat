@@ -1,24 +1,12 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
-import { composeWithDevTools } from 'redux-devtools-extension'
-import { userRegisterReducer, userLoginReducer } from './reducers/authReducers' 
+import { configureStore } from '@reduxjs/toolkit'
+import registerReducer from './auth/registerSlice'
+import loginReducer from './auth/loginSlice'
 
-const reducer = combineReducers({ 
-    
-    userRegister : userRegisterReducer,
-    userLogin : userLoginReducer,
-
+const store = configureStore({
+    reducer:{
+        userLogin : loginReducer,
+        userRegister : registerReducer,
+    }
 })
-
-const userInfoFromStorage = sessionStorage.getItem('userInfo') ? JSON.parse(sessionStorage.getItem('userInfo')) : null
-
-const initialState = {
-    userLogin : { userInfo : userInfoFromStorage },
-    userRegister : { userInfo : userInfoFromStorage }
-}
-
-const middleware = [thunk]
-
-const store = createStore(reducer, initialState, composeWithDevTools(applyMiddleware(...middleware))) 
 
 export default store

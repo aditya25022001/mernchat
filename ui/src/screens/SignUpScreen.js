@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Form, ListGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { userRegisterAction } from '../actions/authActions'
+import { userRegisterAction } from '../auth/registerSlice'
 import { useNavigate } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux'
 import { Loader } from '../components/Loader'
@@ -40,7 +40,7 @@ export const SignUpScreen = () => {
     const registerHandler = (e) => {
         e.preventDefault()
         if(password===confirmPassword){
-            dispatch(userRegisterAction(name, email, password))
+            dispatch(userRegisterAction({name, email, password}))
         }
         else{
             setUserError(true)

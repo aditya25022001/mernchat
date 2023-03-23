@@ -25,7 +25,7 @@ export const Header = () => {
             </Navbar.Brand>
             <Navbar.Toggle className='border-0' aria-controls="responsive-navbar-nav">
                 <span>
-                    <MenuOpenIcon style={{ color:'black' }}/>
+                    <MenuOpenIcon style={{ color:'rgb(192, 192, 192)' }}/>
                 </span>
             </Navbar.Toggle>
             <Navbar.Collapse id="responsive-navbar-nav">

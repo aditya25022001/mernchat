@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Form, ListGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { userLoginAction } from '../actions/authActions'
+import { userLoginAction } from '../auth/loginSlice'
 import { useNavigate } from 'react-router'
 import Button from '@mui/material/Button';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -26,7 +26,7 @@ export const LoginScreen = () => {
 
     const loginHandler = (e) => {
         e.preventDefault()
-        dispatch(userLoginAction(email, password))
+        dispatch(userLoginAction({email, password}))
     }
 
     useEffect(() => {

@@ -14,8 +14,8 @@ export const HomeScreen = () => {
   },[userInfo,navigate])
 
   return (
-    <div>
-
-    </div>
+    <>
+      
+    </>
   )
 }
