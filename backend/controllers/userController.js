@@ -65,7 +65,15 @@ export const login = asyncHandler(async (req,res) => {
 })
 
 export const listUsers = asyncHandler(async(req,res) => {
-    const users = await User.find({}).find({ _id: { $ne: req.user._id } }).select("-password")
+    const keyword = req.query.keyword
+    ? {
+        $or: [
+          { name: { $regex: req.query.keyword, $options: "i" } },
+          { email: { $regex: req.query.keyword, $options: "i" } },
+        ],
+      }
+    : {};
+    const users = await User.find(keyword).find({ _id: { $ne: req.user._id } }).select("-password")
     if(users) res.status(200).json({
         message:"Retrieved list of users",
         users

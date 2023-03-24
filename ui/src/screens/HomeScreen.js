@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { useSelector } from 'react-redux'
+import { LeftPanel } from '../components/LeftPanel'
 
 export const HomeScreen = () => {
 
@@ -15,7 +16,7 @@ export const HomeScreen = () => {
 
   return (
     <>
-      
+      <LeftPanel/>
     </>
   )
 }

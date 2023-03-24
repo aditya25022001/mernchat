@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Form, ListGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { userRegisterAction } from '../auth/registerSlice'
+import { userRegisterAction } from '../reducers/registerSlice'
 import { useNavigate } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux'
 import { Loader } from '../components/Loader'

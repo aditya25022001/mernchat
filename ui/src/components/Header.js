@@ -1,74 +1,98 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import MenuOpenIcon from '@mui/icons-material/MenuOpen';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import SendIcon from '@mui/icons-material/Send';
-// import GitHubIcon from '@mui/icons-material/GitHub';
-// import CallIcon from '@mui/icons-material/Call';
-// import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
-// import FolderCopyIcon from '@mui/icons-material/FolderCopy';
-// import HomeIcon from '@mui/icons-material/Home';
-// import { Tooltip } from '@mui/material';
+import { ListItemIcon, Avatar, Divider, IconButton, Menu, MenuItem, Tooltip } from '@mui/material';
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import { userLogoutAction } from '../reducers/loginSlice';
 
 export const Header = () => {
+
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (e) => {
+      setAnchorEl(e.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+
+    const dispatch = useDispatch()
+
+    const logoutHandler = () => {
+        setTimeout(() => {
+            dispatch(userLogoutAction())
+        },1500)
+    }
 
     const userLogin = useSelector(state => state.userLogin);
     const { userInfo } = userLogin
 
+    const paperProps = {
+        elevation: 0,
+        sx: {
+          overflow: 'visible',
+          filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+          mt: 1.5,
+          '& .MuiAvatar-root': {
+            width: 32,
+            height: 32,
+            ml: -0.5,
+            mr: 1,
+          },
+          '&:before': {
+            content: '""',
+            display: 'block',
+            position: 'absolute',
+            top: 0,
+            right: 14,
+            width: 10,
+            height: 10,
+            bgcolor: 'background.paper',
+            transform: 'translateY(-50%) rotate(45deg)',
+            zIndex: 0,
+          },
+        },
+    }
+
     return (
-        <Navbar collapseOnSelect style={{ borderBottom:'1px solid black' }} expand="lg" variant="dark">
+        <Navbar collapseOnSelect style={{ borderBottom:'1px solid rgb(59,59,59)' }} expand="lg" variant="dark">
             <Navbar.Brand>
                 <Link to={"/"} className='header_link_main d-flex' style={{ alignItems:'center', fontWeight:450 }}>
                     <SendIcon className="bubble" style={{ transform:"rotateZ(-45deg) translateY(-3px)" }} />MERNChat
                 </Link>
             </Navbar.Brand>
-            <Navbar.Toggle className='border-0' aria-controls="responsive-navbar-nav">
-                <span>
-                    <MenuOpenIcon style={{ color:'rgb(192, 192, 192)' }}/>
-                </span>
-            </Navbar.Toggle>
-            <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav className={window && window.innerWidth>992 ? 'ml-auto mr-5' : 'ml-auto border-bottom py-1'}>
-                    {userInfo && <Link className='header_link' style={{ fontWeight:450, fontSize:17 }}  to={"/"}>
-                        {/* <Tooltip title="Home" placement='bottom-start' arrow>
-                            <HomeIcon style={{ fontSize:28 }} />
-                        </Tooltip> */}
-                        Home
-                    </Link>}
-                </Nav>
-                <Nav className={window && window.innerWidth>992 ? 'mr-5' : 'border-bottom py-1'}>
-                    <Link className='header_link' style={{ fontWeight:450, fontSize:17 }} to={"/docs"}>Documents
-                        {/* <Tooltip arrow placement="bottom-start" title="Documents">
-                            <FolderCopyIcon/>{"  "}
-                        </Tooltip> */}
-                    </Link>
-                </Nav>
-                <Nav className={window && window.innerWidth>992 ? 'mr-5' : 'border-bottom py-1'}>
-                    <a className='header_link' style={{ fontWeight:450, fontSize:17 }} href='https://github.com/aditya25022001/mernchat ' target='_blank' rel='noopener noreferrer'>
-                        {/* <Tooltip arrow placement="bottom-start" title="Source Github">
-                            <GitHubIcon/>
-                        </Tooltip> */}
-                        Source Code
-                    </a>
-                </Nav>
-                <Nav className={window && window.innerWidth>992 && userInfo ? 'mr-2' : window && window.innerWidth>992 && !userInfo ? 'mr-5' : 'border-bottom py-1'}>
-                    <Link className='header_link' style={{ fontWeight:450, fontSize:17 }} to={'/contact'}>
-                        {/* <Tooltip arrow placement="bottom-start" title="Contact">
-                            <CallIcon/>
-                        </Tooltip> */}
-                        Contact
-                    </Link>
-                </Nav>
-                {!userInfo && <Nav className={window && window.innerWidth>992 ? 'mr-2' : 'mr-2 pt-2'}>
+                {!userInfo
+                ? <Nav className="ml-auto">
                     <Link to='/login' className='header_link' style={{ fontWeight:450, fontSize:17 }}>
-                        {/* <Tooltip arrow placement="bottom-start" title="Signup / login">
-                            <PowerSettingsNewIcon/>
-                        </Tooltip> */}
                         Login
                     </Link>
-                </Nav>}
-            </Navbar.Collapse>
+                </Nav>
+                : <div className='ml-auto'>
+                   <Tooltip arrow title="Account settings">
+                        <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }} >
+                            <Avatar sx={{ width: 32, height: 32, backgroundColor:"rgb(192,192,192)", color:"black" }} src={userInfo?.profilePic} >{userInfo.name[0]}</Avatar>
+                        </IconButton>
+                    </Tooltip> 
+                    <Menu PaperProps={paperProps} style={{}} anchorEl={anchorEl} id="account-menu" open={open} onClose={handleClose} onClick={handleClose} transformOrigin={{ horizontal: 'right', vertical: 'top' }} anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
+                        <MenuItem onClick={handleClose} style={{ color:"black" }}>
+                            <ListItemIcon>
+                                <ManageAccountsIcon style={{ color:"black" }}/> 
+                            </ListItemIcon>
+                            Profile
+                        </MenuItem>
+                        <Divider/>
+                        <MenuItem style={{ color:"black" }} onClick={logoutHandler}>
+                            <ListItemIcon>
+                                <PowerSettingsNewIcon style={{ color:"black" }}/>
+                            </ListItemIcon>
+                            Logout
+                        </MenuItem>
+                    </Menu>
+                </div>
+                }
         </Navbar>
     )
 }
