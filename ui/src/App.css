@@ -94,9 +94,12 @@ input{
 .chatc{
     height:82.5%;
 }
-/* .MuiDrawer-root, .MuiDrawer-modal .MuiModal-root, .css-pasalb-MuiModal-root-MuiDrawer-root, .MuiBackdrop-root, .MuiModal-backdrop, .css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop{
-    z-index: 0 !important;
-} */
+.styles_scrollable-div__prSCv{
+    height:100% !important;
+}
+*::-webkit-scrollbar{
+    display: none !important;
+}
 @media screen and (min-width: 500px) {
     *::-webkit-scrollbar{
         display: none !important;
@@ -140,7 +143,7 @@ input{
         display: block !important;
     }
     .MuiDrawer-paper, .left{
-        width:100% !important;
+        width:100vw !important;
     }
     .right{
         margin-left:0px;

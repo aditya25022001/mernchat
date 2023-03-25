@@ -3,10 +3,13 @@ import { useNavigate } from 'react-router'
 import { useSelector } from 'react-redux'
 import { LeftPanel } from '../components/LeftPanel'
 import { RightPanel } from '../components/RightPanel'
+import { ChatState } from '../context/ChatProvider'
 
 export const HomeScreen = () => {
 
   const navigate = useNavigate()
+
+  const { leftOpen } = ChatState()
 
   const userLogin = useSelector(state => state.userLogin)
   const { userInfo } = userLogin
@@ -18,7 +21,8 @@ export const HomeScreen = () => {
   return (
     <div className="d-flex">
       <LeftPanel/>
-      <RightPanel/>
+      {window.innerWidth<575 && !leftOpen && <RightPanel/>}
+      {window.innerWidth>575 && <RightPanel/>}
     </div>
   )
 }

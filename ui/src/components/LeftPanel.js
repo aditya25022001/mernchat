@@ -22,7 +22,7 @@ import Stack from '@mui/material/Stack';
 
 export const LeftPanel = () => {
 
-    const { setSelectedChat } = ChatState();
+    const { setSelectedChat, setLeftOpen } = ChatState();
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
@@ -43,9 +43,9 @@ export const LeftPanel = () => {
     const [uf, setUF] = useState("")
     const [u,setU] = useState([])
   
-    const handleDrawerOpen = () => setOpen(true);
+    const handleDrawerOpen = () => {setOpen(true); setLeftOpen(true)}
   
-    const handleDrawerClose = () => setOpen(false);
+    const handleDrawerClose = () => {setOpen(false); setLeftOpen(false)}
 
     const DrawerHeader = styled('div')(({ theme }) => ({
         display: 'flex',
@@ -140,7 +140,7 @@ export const LeftPanel = () => {
             {!open && <IconButton color="inherit" onClick={handleDrawerOpen} style={{ position:'fixed', top:'4.5rem', right:'1rem', zIndex:'100', backgroundColor:'rgb(36, 36, 36)', color:"rgb(192, 192, 192)", border:"1px solid rgb(59,59,59)" }}>
                 <ChatIcon />
             </IconButton>}
-            <div style={{ width:350, borderRight:'1px solid rgb(40,40,40)', display: open ? "block" : "none", zIndex:"1001" }} className="left" anchor="left" open={open}>
+            <div style={{ borderRight:'1px solid rgb(40,40,40)', display: open ? "block" : "none", zIndex:"1001" }} className="left" anchor="left" open={open}>
             <DrawerHeader>
                 <Form.Control autoFocus={openM ? false : true} value={search} onChange={e => {setSearch(e.target.value); dispatch(getUsersAction({keyword:e.target.value}))}} placeholder="Add/Search chat" type="text" className="mx-2 mt-2" />
                 <Tooltip title="Close" placement="right" arrow>
