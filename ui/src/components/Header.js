@@ -58,7 +58,7 @@ export const Header = () => {
     }
 
     return (
-        <Navbar collapseOnSelect style={{ borderBottom:'1px solid rgb(59,59,59)' }} expand="lg" variant="dark">
+        <Navbar collapseOnSelect style={{ borderBottom:'1px solid rgb(40,40,40)' }} expand="lg" variant="dark">
             <Navbar.Brand>
                 <Link to={"/"} className='header_link_main d-flex' style={{ alignItems:'center', fontWeight:450 }}>
                     <SendIcon className="bubble" style={{ transform:"rotateZ(-45deg) translateY(-3px)" }} />MERNChat

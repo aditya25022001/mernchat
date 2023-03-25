@@ -3,7 +3,7 @@ import Chat from '../models/chat.js';
 import User from '../models/user.js';
 
 export const p2pChat = asyncHandler(async(req,res) => {
-    const userID = req.params.id
+    const { userID } = req.body
     if(!userID) res.status(400).json({ message:"userID variable not sent" })
     let isChat = await Chat.find({
         isGroup: false,

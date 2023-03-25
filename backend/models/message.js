@@ -13,12 +13,6 @@ const messageSchema = Schema({
         type: Schema.Types.ObjectId, 
         ref: "chats" 
     },
-    readBy: [
-        { 
-            type: Schema.Types.ObjectId, 
-            ref: "users" 
-        }
-    ],
   },
   { timestamps: true }
 );

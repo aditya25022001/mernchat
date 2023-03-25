@@ -32,7 +32,7 @@ body{
 input{
     background-color: rgb(36, 36, 36) !important;
     color: rgb(192, 192, 192) !important;
-    border: 1px solid rgb(59, 59, 59) !important;
+    border: 1px solid rgb(43,43,43) !important;
 }
 .bubble{
     animation: bubble 3s infinite;
@@ -63,11 +63,11 @@ input{
 .form-control:focus{
     border: 1.2px solid #9c9b9b;
 }
-.MuiDrawer-paper{
-    width:350px !important;
+.MuiDrawer-paper, .left{
+    width:450px !important;
     color: rgb(192, 192, 192) !important;
     background-color: rgb(25, 25, 25) !important;
-    border-right: 1px solid rgb(59,59,59) !important;
+    border-right: 1px solid rgb(40,40,40) !important;
 }
 .Mui-disabled{
     opacity:0.4;
@@ -75,21 +75,47 @@ input{
 .nouser{
     left:99px !important;
 }
+.nochat{
+    left:55%;
+}
+.MuiChip-label{
+    color: rgb(192,192,192) !important;
+}
+.right{
+    /* margin-left:350px; */
+    width: 100% !important;
+    /* width:calc(100% - 350px); */
+    height: calc(100vh - 58.8px);
+    /* z-index: 10001; */
+}
+.MuiBackdrop-root, .MuiModal-backdrop, .css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop{
+    display: none !important;
+}
+.chatc{
+    height:82.5%;
+}
+/* .MuiDrawer-root, .MuiDrawer-modal .MuiModal-root, .css-pasalb-MuiModal-root-MuiDrawer-root, .MuiBackdrop-root, .MuiModal-backdrop, .css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop{
+    z-index: 0 !important;
+} */
 @media screen and (min-width: 500px) {
     *::-webkit-scrollbar{
-        width:7px;
+        display: none !important;
+        width:1px;
         height:5px;
-        background-color: rgb(192, 192, 192);
+        background-color: rgb(10, 10, 10);
     }
     *::-webkit-scrollbar-thumb{
         width:7px;
         border-radius:150px;
-        background-color: rgb(211, 211, 211);
+        background-color: rgb(10, 10, 10);
     }
 }
-.chat:hover{
+.close{
+    display: none !important;
+}
+.chat:hover, .user:hover{
     background-color:rgb(50, 50, 50) !important;
-    transition-duration: 0.5s;
+    transition-duration: 0.3s;
 }
 @media screen and (max-width:1200px){
     .formcomponent{
@@ -110,10 +136,23 @@ input{
     .formcomponent{
         width:95%;
     }   
-    .MuiDrawer-paper{
+    .close{
+        display: block !important;
+    }
+    .MuiDrawer-paper, .left{
         width:100% !important;
+    }
+    .right{
+        margin-left:0px;
+        width: 100% !important;
+    }
+    .nochat{
+        left:35% !important;
     }
     .nouser{
         left:35% !important;
+    }
+    .chatc{
+        height:80.5%;
     }
 }

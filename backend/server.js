@@ -2,6 +2,7 @@ import express from "express";
 import cors from 'cors';
 import userRoutes from './routes/userRoutes.js';
 import chatRoutes from './routes/chatRoutes.js';
+import messageRoutes from './routes/messageRoutes.js';
 import { config } from 'dotenv';
 import { connectDB } from './config/db.js';
 import { notFound, errorHandler } from "./middlewares/errorMidleware.js";
@@ -26,6 +27,8 @@ app.use(cors({
 app.use("/api/v1/user",userRoutes);
 
 app.use("/api/v1/chat",chatRoutes);
+
+app.use("/api/v1/message",messageRoutes);
 
 app.get("/",(req,res) => res.send(process.env.ALLOWED.split(" ")))
 

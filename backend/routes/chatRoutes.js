@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.route("/").get(authenticate,getUserChats);
 
-router.route("/p2p/:id").get(authenticate,p2pChat)
+router.route("/p2p").post(authenticate,p2pChat)
 
 router.route("/groupChat").post(authenticate,createGroupChat)
 

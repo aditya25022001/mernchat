@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { useSelector } from 'react-redux'
 import { LeftPanel } from '../components/LeftPanel'
+import { RightPanel } from '../components/RightPanel'
 
 export const HomeScreen = () => {
 
@@ -15,8 +16,9 @@ export const HomeScreen = () => {
   },[userInfo,navigate])
 
   return (
-    <>
+    <div className="d-flex">
       <LeftPanel/>
-    </>
+      <RightPanel/>
+    </div>
   )
 }
