@@ -34,6 +34,12 @@ input{
     color: rgb(192, 192, 192) !important;
     border: 1px solid rgb(43,43,43) !important;
 }
+.typing{
+    color:green;
+    animation: bubble 1s infinite;
+    font-size: 12px;
+    font-weight: 500;
+}
 .bubble{
     animation: bubble 3s infinite;
 }
@@ -93,6 +99,7 @@ input{
 }
 .chatc{
     height:82.5%;
+    border-bottom:1px solid rgb(40, 40, 40);
 }
 .styles_scrollable-div__prSCv{
     height:100% !important;

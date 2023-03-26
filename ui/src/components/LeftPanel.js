@@ -22,7 +22,7 @@ import Stack from '@mui/material/Stack';
 
 export const LeftPanel = () => {
 
-    const { setSelectedChat, setLeftOpen } = ChatState();
+    const { setSelectedChat, setLeftOpen, notification, setNotification } = ChatState();
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
@@ -74,52 +74,56 @@ export const LeftPanel = () => {
     },[dispatch])
     
     const createChat = async(id) => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${userInfo.token}`
+        if(userInfo){
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${userInfo.token}`
+                }
             }
-        }
-        try {
-            const { data } = await axios.post(`http://127.0.0.1:5000/api/v1/chat/p2p`,{ userID:id }, config)
-            setCE({l:true})
-            if(data){
-                setSelectedChat(data.chat)
-                dispatch(getUserChatsAction())
-                setCE({l:false,e:false,m:""})
-                setSearch("")
-                if(window.innerWidth<575) handleDrawerClose()
+            try {
+                const { data } = await axios.post(`http://127.0.0.1:5000/api/v1/chat/p2p`,{ userID:id }, config)
+                setCE({l:true})
+                if(data){
+                    setSelectedChat(data.chat)
+                    dispatch(getUserChatsAction())
+                    setCE({l:false,e:false,m:""})
+                    setSearch("")
+                    if(window.innerWidth<575) handleDrawerClose()
+                }
+            } catch (err) {
+                console.log(err);
+                setCE({l:false,e:true,m:err.response.data})
             }
-        } catch (err) {
-            console.log(err);
-            setCE({l:false,e:true,m:err.response.data})
         }
     }
 
     const createGroupChat = async() => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${userInfo.token}`
+        if(userInfo){
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${userInfo.token}`
+                }
             }
-        }
-        try {
-            setU([...u.map(e => e._id)])
-            setOpenM(false)
-            const { data } = await axios.post(`http://127.0.0.1:5000/api/v1/chat/groupChat`,{ name, users:u }, config)
-            setCE({l:true})
-            if(data){
-                setSelectedChat(data.chat)
-                dispatch(getUserChatsAction())
-                setCE({l:false,e:false,m:""})
-                setName("") 
-                setUF("") 
-                setU([])
-                if(window.innerWidth<575) handleDrawerClose()
+            try {
+                setU([...u.map(e => e._id)])
+                setOpenM(false)
+                const { data } = await axios.post(`http://127.0.0.1:5000/api/v1/chat/groupChat`,{ name, users:u }, config)
+                setCE({l:true})
+                if(data){
+                    setSelectedChat(data.chat)
+                    dispatch(getUserChatsAction())
+                    setCE({l:false,e:false,m:""})
+                    setName("") 
+                    setUF("") 
+                    setU([])
+                    if(window.innerWidth<575) handleDrawerClose()
+                }
+            } catch (err) {
+                console.log(err);
+                setCE({l:false,e:true,m:err.response.data})
             }
-        } catch (err) {
-            console.log(err);
-            setCE({l:false,e:true,m:err.response.data})
         }
     }
 
@@ -133,6 +137,23 @@ export const LeftPanel = () => {
 
     const deleteMember = (user) => {
         setU([...u.filter(e => e._id!==user._id)])
+    }
+
+    const selectChat = (each) => {
+        setSelectedChat(each); 
+        if(window.innerWidth<575) handleDrawerClose()
+        if(notification.find(one => one.chat._id===each._id)){
+            setNotification([...notification.filter(e => e.chat._id!==each._id)])
+            localStorage.setItem("notification",JSON.stringify([...notification.filter(e => e.chat._id!==each._id)]))
+        }
+    }
+
+    const showDot = (id) => {
+        if(userInfo){
+            let counter = 0;
+            notification.map(e => (e.chat._id===id && counter++));
+            return {show:notification.find(one => one.chat._id===id && one.sender._id!==userInfo?._id), counter}
+        }
     }
 
     return (
@@ -166,7 +187,7 @@ export const LeftPanel = () => {
                         {loadingC 
                         ? <ChatLoader/>
                         : chats && chats.map(each => (
-                            <Chat key={each._id} handleFunction={() => {setSelectedChat(each); if(window.innerWidth<575) handleDrawerClose()}} chat={each} />
+                            <Chat key={each._id} handleFunction={() => selectChat(each)} dot={showDot(each._id)?.show} counter={showDot(each._id)?.counter} chat={each} />
                         ))
                         }
                     </div>

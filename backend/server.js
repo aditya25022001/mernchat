@@ -40,7 +40,7 @@ app.use(errorHandler)
 const socketServer = app.listen(PORT,()=>console.log(`Server running on ${PORT} in ${ENV} mode...`))
 
 const io = new Server(socketServer,{
-    pingTimeout:60000,
+    pingTimeout:100000,
     cors:{
         origin:process.env.ALLOWED.split(" "),
     }

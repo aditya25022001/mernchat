@@ -5,7 +5,7 @@ const chatContext = createContext();
 const ChatProvider = ({ children }) => {
 
     const [selectedChat, setSelectedChat] = useState();
-    const [notification, setNotification] = useState([]);
+    const [notification, setNotification] = useState(JSON.parse(localStorage.getItem("notification")) || []);
     const [chatR, setChatR] = useState([]);
     const [leftOpen, setLeftOpen] = useState(true)
 
