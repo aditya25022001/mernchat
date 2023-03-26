@@ -1,7 +1,6 @@
 import asyncHandler from 'express-async-handler';
 import User from '../models/user.js';
 import { generateToken } from '../config/generateToken.js'
-import { welcomeEmail, sendLoginWarningEmail } from './emailController.js';
 
 export const register = asyncHandler(async(req,res) => {
     const { name, email, password } = req.body
@@ -14,7 +13,6 @@ export const register = asyncHandler(async(req,res) => {
     else{
         const user = User.create({ email, password, name, lastLogin:Date.now() })
         if(user){
-            welcomeEmail(name,email)
             res.status(201).json({
                 message:"User registered successfully",
                 _id:user._id,
@@ -51,7 +49,6 @@ export const login = asyncHandler(async (req,res) => {
             })
         }
         else{
-            sendLoginWarningEmail(userExists.name, email)
             res.status(401).json({
                 message:"Bad credentials"
             })
