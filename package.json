@@ -47,6 +47,7 @@
     "nodemailer": "^6.9.1",
     "nodemailer-express-handlebars": "^6.1.0",
     "nodemon": "^2.0.21",
+    "path": "^0.12.7",
     "socket.io": "^4.6.1",
     "ulid": "^2.3.0"
   }
