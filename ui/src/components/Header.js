@@ -2,6 +2,7 @@ import React from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import SendIcon from '@mui/icons-material/Send';
 import { Avatar, IconButton, Tooltip } from '@mui/material';
 import { userLogoutAction } from '../reducers/loginSlice';
@@ -10,8 +11,11 @@ export const Header = () => {
 
     const dispatch = useDispatch()
 
+    const navigate = useNavigate()
+
     const logoutHandler = () => {
         setTimeout(() => {
+            navigate("/login")
             dispatch(userLogoutAction())
         },1500)
     }
