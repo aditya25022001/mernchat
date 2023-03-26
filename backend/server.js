@@ -31,7 +31,7 @@ app.use("/api/v1/chat",chatRoutes);
 
 app.use("/api/v1/message",messageRoutes);
 
-app.get("/",(req,res) => res.send(process.env.ALLOWED.split(" ")))
+app.get("/",(req,res) => res.send("Mern chat server"))
 
 app.use(notFound)
 
