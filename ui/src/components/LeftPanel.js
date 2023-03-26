@@ -82,7 +82,7 @@ export const LeftPanel = () => {
                 }
             }
             try {
-                const { data } = await axios.post(`http://127.0.0.1:5000/api/v1/chat/p2p`,{ userID:id }, config)
+                const { data } = await axios.post(`https://mernchat-w0n3.onrender.com/api/v1/chat/p2p`,{ userID:id }, config)
                 setCE({l:true})
                 if(data){
                     setSelectedChat(data.chat)
@@ -109,7 +109,7 @@ export const LeftPanel = () => {
             try {
                 setU([...u.map(e => e._id)])
                 setOpenM(false)
-                const { data } = await axios.post(`http://127.0.0.1:5000/api/v1/chat/groupChat`,{ name, users:u }, config)
+                const { data } = await axios.post(`https://mernchat-w0n3.onrender.com/api/v1/chat/groupChat`,{ name, users:u }, config)
                 setCE({l:true})
                 if(data){
                     setSelectedChat(data.chat)

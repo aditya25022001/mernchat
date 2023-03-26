@@ -12,9 +12,9 @@ import { ScrollableChat } from './ScrollableChat'
 import io from "socket.io-client";
 import axios from 'axios'
 
-const ENDPOINT = "http://127.0.0.1:5000";
+const ENDPOINT = "https://mernchat-w0n3.onrender.com";
 let socket, selectedChatCompare;
-const apiBaseURL = "http://127.0.0.1:5000"
+const apiBaseURL = "https://mernchat-w0n3.onrender.com"
 
 export const ChatConsole = () => {
     

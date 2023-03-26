@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-const apiBaseURL = "http://127.0.0.1:5000"
+const apiBaseURL = "https://mernchat-w0n3.onrender.com"
 
 export const getUsersAction = createAsyncThunk(
     'user/getUsers',
