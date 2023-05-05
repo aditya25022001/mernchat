@@ -21,9 +21,11 @@ const transporter = nodemailer.createTransport({
     } 
 });
 
+
 transporter.use('compile',hbs({viewEngine:'nodemailer-express-handlebars', viewPath:path.join(__dirname,'/backend/templates')}));   
 
 const sendMail = (mailOptions) => {
+    console.log(path.join(__dirname,'/backend/templates'))
     transporter.sendMail(mailOptions,(err,info) => {
         if(err){
             process.env.NODE_ENV !== 'production' && console.log(err.message)
@@ -71,20 +73,6 @@ export const sendLoginWarningEmail = (name, email) => {
         template:'loginWarningEmail',
         context:{
             name:name,
-        }
-    }
-    sendMail(mailOptions)
-}
-
-export const sendContactEmail = (name, email, message) => {
-    const mailOptions = {
-        from:EMAIL,
-        to:email,
-        subject:'Contact email',
-        template:'contactEmail',
-        context:{
-            name:name,
-            message:message
         }
     }
     sendMail(mailOptions)
