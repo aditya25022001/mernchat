@@ -67,6 +67,11 @@ export const LoginScreen = () => {
                             </div>
                         </div>
                     </Form.Group>
+                    <div className='mt-1'>
+                        <small>
+                            <Link to='/forgot'>Forgot password?</Link>
+                        </small>
+                    </div>
                 </ListGroup.Item>
                 <ListGroup.Item style={{ backgroundColor:"rgb(25, 25, 25)" }} className="border-0 mt-1">
                     <Button className='w-100' variant='contained' type="submit">Login</Button>

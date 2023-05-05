@@ -5,6 +5,9 @@ import { HomeScreen } from './screens/HomeScreen';
 import { ChatScreen } from './screens/ChatScreen';
 import { LoginScreen } from './screens/LoginScreen';
 import { SignUpScreen } from './screens/SignUpScreen';
+import { ForgotScreen } from './screens/ForgotScreen';
+import { EnterOtpScreen } from './screens/EnterOtpScreen';
+import { ResetPasswordScreen } from './screens/ResetPasswordScreen';
 
 function App() {
 
@@ -16,6 +19,9 @@ function App() {
         <Route path="/chat" element={<ChatScreen/>} exact/>
         <Route path="/login" element={<LoginScreen/>} exact/>
         <Route path="/signup" element={<SignUpScreen/>} exact/>
+        <Route path="/forgot" element={<ForgotScreen/>} exact/>
+        <Route path="/otp" element={<EnterOtpScreen/>} exact/>
+        <Route path="/reset/:email" element={<ResetPasswordScreen/>} exact/>
       </Routes>
     </Router>
   );

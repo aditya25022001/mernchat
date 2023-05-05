@@ -3,6 +3,8 @@ import registerReducer from './reducers/registerSlice'
 import loginReducer from './reducers/loginSlice'
 import getUsersReducer from './reducers/getUsersSlice'
 import getUserChatsReducer from './reducers/getUserChatsSlice'
+import sendOtpReducer from './reducers/sendOtpSlice'
+import resetPasswordReducer from './reducers/resetPasswordSlice'
 
 const store = configureStore({
     reducer:{
@@ -10,6 +12,8 @@ const store = configureStore({
         userRegister : registerReducer,
         userGetUsers : getUsersReducer,
         userGetChats : getUserChatsReducer,
+        userSendOtp : sendOtpReducer,
+        userReset : resetPasswordReducer
     }
 })
 

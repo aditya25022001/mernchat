@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css' integrity='sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l' crossorigin='anonymous'/>
+        <style>
+            @font-face {
+                font-family: myFirstFont;
+                src: url('./Inter-Regular.ttf');
+            }
+            body{
+                text-align:left;
+                font-family: myFirstFont;
+            }
+        </style>
+    </head>
+<body>
+    <h2>Hello {{name}}!</h2>
+    <h3>This is a to acknowledge that we have recieved your message - </h3>
+    <blockquote class='p-2' style="font-size:15px; border:1px solid whitesmoke; width:max-content; padding:1rem;">
+        {{message}}
+    </blockquote>
+    <div style="font-size:15px;">
+        We will contact you back soon.
+    </div>    
+    <div style="font-size:15px;">
+        Till then keep developing! {...} 
+    </div>
+</body>
+</html>
